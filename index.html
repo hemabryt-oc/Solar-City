@@ -1,1428 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Solar City Apo | Adagache Homes</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<style>
-:root{
---bg:#050505;
---card:#101010;
---gold:#d4af37;
---gold-light:#f3df9b;
---text:#ffffff;
---muted:#9f9f9f;
---border:rgba(212,175,55,0.18);
---glass:rgba(255,255,255,0.05);
---green:#25d366;
-}
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-scroll-behavior:smooth;
-}
-
-body{
-font-family:'Montserrat',sans-serif;
-background:var(--bg);
-color:var(--text);
-overflow-x:hidden;
-}
-
-body::-webkit-scrollbar{
-width:8px;
-}
-
-body::-webkit-scrollbar-thumb{
-background:var(--gold);
-border-radius:20px;
-}
-
-.gold-text{
-background:linear-gradient(135deg,#fff4c7 0%,#d4af37 50%,#8f690a 100%);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-.glass{
-background:var(--glass);
-backdrop-filter:blur(18px);
-border:1px solid rgba(255,255,255,0.08);
-}
-
-header{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-z-index:1000;
-background:rgba(0,0,0,0.75);
-backdrop-filter:blur(18px);
-border-bottom:1px solid var(--border);
-}
-
-.nav-container{
-max-width:1300px;
-margin:auto;
-padding:18px 25px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-}
-
-.logo h1{
-font-size:1.6rem;
-font-weight:900;
-letter-spacing:2px;
-}
-
-.logo p{
-font-size:0.65rem;
-letter-spacing:4px;
-color:var(--muted);
-margin-top:4px;
-}
-
-.nav-links{
-display:flex;
-gap:35px;
-align-items:center;
-}
-
-.nav-links a{
-text-decoration:none;
-color:white;
-font-weight:600;
-font-size:0.95rem;
-transition:0.3s;
-}
-
-.nav-links a:hover{
-color:var(--gold);
-}
-
-.nav-btn{
-background:linear-gradient(135deg,var(--gold-light),var(--gold));
-color:black!important;
-padding:14px 24px;
-border-radius:40px;
-font-weight:800!important;
-}
-
-.mobile-btn{
-display:none;
-font-size:1.5rem;
-background:none;
-border:none;
-color:var(--gold);
-cursor:pointer;
-}
-
-.hero{
-min-height:100vh;
-background:
-linear-gradient(to bottom,rgba(0,0,0,0.5),rgba(0,0,0,0.93)),
-url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1600&auto=format&fit=crop');
-background-size:cover;
-background-position:center;
-display:flex;
-align-items:center;
-position:relative;
-}
-
-.hero::before{
-content:'';
-position:absolute;
-inset:0;
-background:radial-gradient(circle at top right,rgba(212,175,55,0.12),transparent 35%);
-}
-
-.hero-content{
-max-width:1300px;
-margin:auto;
-padding:140px 25px 80px;
-display:grid;
-grid-template-columns:1.1fr 0.9fr;
-gap:70px;
-align-items:center;
-position:relative;
-z-index:2;
-}
-
-.badge{
-display:inline-flex;
-align-items:center;
-gap:10px;
-padding:12px 22px;
-border-radius:50px;
-border:1px solid rgba(212,175,55,0.3);
-background:rgba(212,175,55,0.08);
-color:var(--gold-light);
-font-weight:700;
-margin-bottom:30px;
-font-size:0.9rem;
-}
-
-.hero h2{
-font-size:6rem;
-line-height:0.95;
-font-weight:900;
-margin-bottom:30px;
-}
-
-.hero p{
-font-size:1.15rem;
-line-height:2;
-color:#d0d0d0;
-max-width:700px;
-margin-bottom:35px;
-}
-
-.hero-stats{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
-margin-bottom:40px;
-}
-
-.stat-box{
-padding:24px;
-border-radius:24px;
-min-width:180px;
-}
-
-.stat-box h3{
-font-size:2.5rem;
-font-weight:900;
-margin-bottom:8px;
-}
-
-.stat-box p{
-margin:0;
-font-size:0.95rem;
-color:var(--muted);
-}
-
-.hero-actions{
-display:flex;
-gap:18px;
-flex-wrap:wrap;
-}
-
-.primary-btn,
-.secondary-btn{
-text-decoration:none;
-padding:18px 34px;
-border-radius:60px;
-font-weight:800;
-transition:0.4s;
-display:inline-flex;
-align-items:center;
-gap:12px;
-cursor:pointer;
-border:none;
-}
-
-.primary-btn{
-background:var(--green);
-color:black;
-}
-
-.primary-btn:hover{
-transform:translateY(-4px);
-}
-
-.secondary-btn{
-border:1px solid rgba(212,175,55,0.3);
-color:white;
-background:transparent;
-}
-
-.secondary-btn:hover{
-background:rgba(212,175,55,0.1);
-}
-
-.offer-card{
-padding:40px;
-border-radius:32px;
-position:relative;
-overflow:hidden;
-}
-
-.offer-card::before{
-content:'';
-position:absolute;
-width:300px;
-height:300px;
-background:rgba(212,175,55,0.12);
-border-radius:50%;
-right:-120px;
-top:-120px;
-filter:blur(20px);
-}
-
-.offer-top{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-bottom:30px;
-position:relative;
-z-index:2;
-}
-
-.offer-top h3{
-font-size:2.3rem;
-font-weight:900;
-}
-
-.offer-top p{
-margin:0;
-color:var(--muted);
-font-size:0.9rem;
-}
-
-.offer-icon{
-width:75px;
-height:75px;
-border-radius:24px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:2rem;
-background:rgba(212,175,55,0.08);
-border:1px solid rgba(212,175,55,0.2);
-}
-
-.offer-list{
-position:relative;
-z-index:2;
-}
-
-.offer-item{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:18px 0;
-border-bottom:1px solid rgba(255,255,255,0.08);
-}
-
-.offer-item span:first-child{
-color:var(--muted);
-}
-
-.offer-item span:last-child{
-font-weight:800;
-font-size:1.1rem;
-}
-
-.section{
-padding:120px 25px;
-}
-
-.container{
-max-width:1300px;
-margin:auto;
-}
-
-.section-head{
-text-align:center;
-margin-bottom:70px;
-}
-
-.section-head small{
-letter-spacing:6px;
-text-transform:uppercase;
-color:var(--gold);
-font-weight:700;
-display:block;
-margin-bottom:18px;
-}
-
-.section-head h2{
-font-size:4rem;
-font-weight:900;
-margin-bottom:20px;
-}
-
-.section-head p{
-max-width:700px;
-margin:auto;
-line-height:2;
-color:var(--muted);
-}
-
-.plot-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:30px;
-}
-
-.plot-card{
-background:linear-gradient(to bottom,#111111,#080808);
-border:1px solid rgba(212,175,55,0.08);
-padding:40px;
-border-radius:30px;
-position:relative;
-overflow:hidden;
-transition:0.5s;
-}
-
-.plot-card:hover{
-transform:translateY(-12px);
-box-shadow:0 25px 60px rgba(212,175,55,0.18);
-border-color:rgba(212,175,55,0.3);
-}
-
-.plot-badge{
-position:absolute;
-top:0;
-right:0;
-background:linear-gradient(135deg,var(--gold-light),var(--gold));
-color:black;
-padding:12px 20px;
-border-bottom-left-radius:22px;
-font-weight:800;
-font-size:0.8rem;
-}
-
-.plot-icon{
-width:80px;
-height:80px;
-border-radius:24px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:2rem;
-background:rgba(212,175,55,0.08);
-border:1px solid rgba(212,175,55,0.15);
-margin-bottom:25px;
-}
-
-.plot-card h3{
-font-size:3rem;
-font-weight:900;
-margin-bottom:4px;
-}
-
-.plot-card h4{
-font-size:1.05rem;
-color:var(--muted);
-margin-bottom:15px;
-font-weight:500;
-}
-
-.prototype-link {
-display: inline-flex;
-align-items: center;
-gap: 6px;
-color: var(--gold-light);
-text-decoration: none;
-font-size: 0.85rem;
-font-weight: 600;
-margin-bottom: 25px;
-transition: opacity 0.2s;
-}
-
-.prototype-link:hover {
-opacity: 0.8;
-}
-
-.price{
-font-size:2.5rem;
-font-weight:900;
-margin-bottom:30px;
-}
-
-.plot-btn{
-display:block;
-text-align:center;
-text-decoration:none;
-background:linear-gradient(135deg,var(--gold-light),var(--gold));
-color:black;
-padding:18px;
-font-weight:900;
-border-radius:18px;
-cursor:pointer;
-border:none;
-width:100%;
-font-size:1rem;
-}
-
-/* --- CALCULATOR SPECIAL STYLES --- */
-.calc-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    padding: 40px;
-    border-radius: 30px;
-    align-items: center;
-}
-
-.calc-inputs, .calc-results {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-
-.calc-results {
-    background: rgba(0, 0, 0, 0.4);
-    padding: 30px;
-    border-radius: 22px;
-    border: 1px solid rgba(212,175,55,0.1);
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.input-group label {
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: var(--gold-light);
-}
-
-.input-group select {
-    background: #151515;
-    color: white;
-    border: 1px solid var(--border);
-    padding: 15px;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 600;
-    outline: none;
-    cursor: pointer;
-}
-
-.input-group input[type="range"] {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 6px;
-    background: #222;
-    border-radius: 5px;
-    outline: none;
-}
-
-.input-group input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--gold);
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.range-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    color: var(--muted);
-    font-weight: 600;
-}
-
-.result-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.05rem;
-}
-
-.result-row span:first-child {
-    color: var(--muted);
-}
-
-.result-row span:last-child {
-    font-weight: 700;
-}
-
-/* --- PAYMENT LEAD QUALITY MODAL --- */
-.modal-overlay {
-position: fixed;
-inset: 0;
-background: rgba(0, 0, 0, 0.85);
-backdrop-filter: blur(10px);
-z-index: 2000;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 20px;
-opacity: 0;
-pointer-events: none;
-transition: opacity 0.3s ease;
-}
-
-.modal-overlay.active {
-opacity: 1;
-pointer-events: all;
-}
-
-.modal-window {
-background: #0f0f0f;
-border: 1px solid var(--border);
-border-radius: 28px;
-width: 100%;
-max-width: 480px;
-padding: 35px;
-position: relative;
-transform: translateY(20px);
-transition: transform 0.3s ease;
-}
-
-.modal-overlay.active .modal-window {
-transform: translateY(0);
-}
-
-.modal-close {
-position: absolute;
-top: 20px;
-right: 20px;
-background: none;
-border: none;
-color: var(--muted);
-font-size: 1.2rem;
-cursor: pointer;
-}
-
-.modal-window h3 {
-font-size: 1.8rem;
-font-weight: 800;
-margin-bottom: 8px;
-}
-
-.modal-window p {
-color: var(--muted);
-font-size: 0.95rem;
-margin-bottom: 25px;
-}
-
-.modal-options {
-display: flex;
-flex-direction: column;
-gap: 15px;
-}
-
-.modal-opt-btn {
-background: #161616;
-border: 1px solid rgba(255,255,255,0.06);
-padding: 20px;
-border-radius: 16px;
-display: flex;
-align-items: center;
-gap: 15px;
-color: white;
-cursor:pointer;
-text-align: left;
-transition: 0.2s;
-}
-
-.modal-opt-btn:hover {
-border-color: var(--gold);
-background: rgba(212,175,55,0.03);
-}
-
-.modal-opt-btn i {
-font-size: 1.5rem;
-color: var(--gold);
-}
-
-.modal-opt-btn div strong {
-display: block;
-font-size: 1.05rem;
-margin-bottom: 2px;
-}
-
-.modal-opt-btn div span {
-font-size: 0.85rem;
-color: var(--muted);
-}
-
-.features-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:25px;
-}
-
-.feature-card{
-padding:40px 30px;
-text-align:center;
-border-radius:28px;
-transition:0.4s;
-}
-
-.feature-card:hover{
-transform:translateY(-8px);
-border-color:rgba(212,175,55,0.25);
-}
-
-.feature-icon{
-font-size:3rem;
-margin-bottom:20px;
-}
-
-.feature-card h3{
-font-size:1.2rem;
-font-weight:800;
-}
-
-.location-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:50px;
-align-items:center;
-}
-
-.location-text h2{
-font-size:4rem;
-font-weight:900;
-line-height:1.1;
-margin-bottom:30px;
-}
-
-.location-text p{
-line-height:2;
-color:#d0d0d0;
-margin-bottom:35px;
-}
-
-.location-stats{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
-}
-
-.location-box{
-padding:25px;
-border-radius:24px;
-min-width:180px;
-}
-
-.location-box h3{
-font-size:2rem;
-font-weight:900;
-margin-bottom:10px;
-}
-
-.location-box p{
-margin:0;
-color:var(--muted);
-}
-
-.map-box{
-position:relative;
-height:550px;
-border-radius:36px;
-overflow:hidden;
-border:1px solid rgba(212,175,55,0.15);
-}
-
-.map-box iframe{
-width:100%;
-height:100%;
-border:none;
-}
-
-.direction-btn{
-position:absolute;
-bottom:25px;
-left:25px;
-right:25px;
-text-decoration:none;
-background:var(--green);
-color:black;
-padding:22px;
-font-weight:900;
-border-radius:22px;
-display:flex;
-align-items:center;
-justify-content:center;
-gap:12px;
-font-size:1.1rem;
-box-shadow:0 0 0 rgba(37,211,102,0.5);
-animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-0%{box-shadow:0 0 0 0 rgba(37,211,102,0.5);}
-70%{box-shadow:0 0 0 20px rgba(37,211,102,0);}
-100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}
-}
-
-.cta-section{
-text-align:center;
-padding:90px 40px;
-border-radius:40px;
-}
-
-.cta-section h2{
-font-size:4.5rem;
-font-weight:900;
-margin-bottom:25px;
-line-height:1.1;
-}
-
-.cta-section p{
-max-width:850px;
-margin:auto;
-line-height:2;
-color:var(--muted);
-margin-bottom:45px;
-font-size:1.1rem;
-}
-
-.cta-actions{
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-}
-
-footer{
-padding:60px 25px;
-border-top:1px solid rgba(212,175,55,0.1);
-background:black;
-}
-
-.footer-container{
-max-width:1300px;
-margin:auto;
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:30px;
-flex-wrap:wrap;
-}
-
-.footer-brand h2{
-font-size:2rem;
-font-weight:900;
-margin-bottom:10px;
-}
-
-.footer-brand p{
-letter-spacing:5px;
-font-size:0.7rem;
-color:var(--muted);
-}
-
-.footer-contact a{
-display:block;
-text-decoration:none;
-margin-bottom:15px;
-}
-
-.instagram{
-color:var(--gold);
-font-weight:700;
-}
-
-.phone{
-font-size:2rem;
-font-weight:900;
-color:white;
-}
-
-.floating-wa{
-position:fixed;
-bottom:25px;
-right:25px;
-width:80px;
-height:80px;
-border-radius:50%;
-background:var(--green);
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:2.2rem;
-text-decoration:none;
-z-index:1000;
-box-shadow:0 15px 35px rgba(0,0,0,0.35);
-animation:pulse 2s infinite;
-}
-
-@media(max-width:992px){
-.hero-content,
-.location-grid{
-grid-template-columns:1fr;
-}
-
-.hero h2,
-.section-head h2,
-.location-text h2,
-.cta-section h2{
-font-size:3.4rem;
-}
-}
-
-@media(max-width:768px){
-.mobile-btn{
-display:block;
-}
-
-.nav-links{
-position:absolute;
-top:100%;
-left:0;
-width:100%;
-background:black;
-padding:30px;
-display:none;
-flex-direction:column;
-border-bottom:1px solid var(--border);
-}
-
-.nav-links.active{
-display:flex;
-}
-
-.hero{
-text-align:center;
-}
-
-.hero-stats,
-.hero-actions,
-.location-stats,
-.cta-actions{
-justify-content:center;
-}
-
-.hero h2,
-.section-head h2,
-.location-text h2,
-.cta-section h2{
-font-size:2.5rem;
-}
-
-.offer-card,
-.plot-card,
-.feature-card,
-.cta-section,
-.calc-container{
-grid-template-columns:1fr;
-padding:25px;
-gap:25px;
-}
-
-.calc-results {
-padding:20px;
-}
-
-.map-box{
-height:450px;
-}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Solar City Apo | Adagache Homes</title>
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
-<a href="https://wa.me/2348030702010?text=Hi%20Adagache%20Homes,%20I'm%20interested%20in%20Solar%20City%20Apo" class="floating-wa" target="_blank">
-<i class="fab fa-whatsapp"></i>
+<!-- FLOATING WHATSAPP BUTTON -->
+<a href="https://wa.me/2348030702010?text=Hi%20Adagache%20Homes,%20I'm%20interested%20in%20Solar%20City%20Apo" class="floating-wa" target="_blank" id="waFloatBtn">
+  <i class="fab fa-whatsapp"></i>
 </a>
 
-<div class="modal-overlay" id="leadModal" onclick="closeLeadModal(event)">
-<div class="modal-window">
-<button class="modal-close" onclick="closeLeadModal(event, true)">&times;</button>
-<h3 class="gold-text" id="modalPlotTitle">170 SQM Plot</h3>
-<p>Select your preferred baseline transaction model to initialize negotiation via WhatsApp:</p>
-<div class="modal-options">
-<button class="modal-opt-btn" onclick="triggerWhatsAppLead('Outright Purchase')">
-<i class="fas fa-bolt"></i>
-<div>
-<strong>Outright Capital Payment</strong>
-<span>Secure standard pricing validation immediately</span>
-</div>
-</button>
-<button class="modal-opt-btn" onclick="triggerWhatsAppLead('Structured Installment')">
-<i class="fas fa-calendar-alt"></i>
-<div>
-<strong>Structured Installments Plan</strong>
-<span>Review tailored timeline payment windows</span>
-</div>
-</button>
-</div>
-</div>
+<!-- MODAL FOR PLOT SELECTION -->
+<div class="modal-overlay" id="leadModal">
+  <div class="modal-window">
+    <button class="modal-close" id="closeModalBtn">&times;</button>
+    <h3 class="gold-text" id="modalPlotTitle">170 SQM Plot</h3>
+    <p>Select your preferred transaction model to proceed via WhatsApp:</p>
+    <div class="modal-options">
+      <button class="modal-opt-btn" data-payment="Outright Purchase">
+        <i class="fas fa-bolt"></i>
+        <div>
+          <strong>Outright Capital Payment</strong>
+          <span>Secure standard pricing immediately</span>
+        </div>
+      </button>
+      <button class="modal-opt-btn" data-payment="Structured Installment">
+        <i class="fas fa-calendar-alt"></i>
+        <div>
+          <strong>Structured Installments Plan</strong>
+          <span>Review tailored timeline payment windows</span>
+        </div>
+      </button>
+    </div>
+  </div>
 </div>
 
+<!-- HEADER WITH LOGO (images/logo.png) -->
 <header>
-<div class="nav-container">
-<div class="logo">
-<h1 class="gold-text">SOLAR CITY APO</h1>
-<p>BY ADAGACHE HOMES</p>
-</div>
-
-<button class="mobile-btn" onclick="toggleMenu()">
-<i class="fas fa-bars"></i>
-</button>
-
-<nav class="nav-links" id="navLinks">
-<a href="#plots">Plots</a>
-<a href="#calculator">Calculator</a>
-<a href="#features">Features</a>
-<a href="#location">Location</a>
-<a href="https://wa.me/2348030702010" class="nav-btn" target="_blank">Secure Plot</a>
-</nav>
-</div>
+  <div class="nav-container">
+    <div class="logo-area">
+      <img src="images/logo.png" alt="Adagache Homes Logo" class="site-logo" id="siteLogo" onerror="this.src='https://placehold.co/180x60/111111/d4af37?text=ADAGACHE+HOMES'">
+      <div class="logo-text">
+        <h1 class="gold-text">SOLAR CITY APO</h1>
+        <p>BY ADAGACHE HOMES</p>
+      </div>
+    </div>
+    <button class="mobile-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#plots">Plots</a>
+      <a href="#calculator">Calculator</a>
+      <a href="#features">Features</a>
+      <a href="#location">Location</a>
+      <a href="#about-ceo">CEO</a>
+      <a href="https://wa.me/2348030702010" class="nav-btn" target="_blank">Secure Plot</a>
+    </nav>
+  </div>
 </header>
 
+<!-- HERO SECTION -->
 <section class="hero">
-<div class="hero-content">
-<div>
-<div class="badge">
-<i class="fas fa-certificate"></i>
-FCDA CERTIFICATE OF OCCUPANCY
-</div>
-
-<h2>
-<span class="gold-text">SMART</span><br>
-LUXURY<br>
-LIVING
-</h2>
-
-<p>
-Invest in Abuja’s next premium smart city destination. Solar City Apo combines luxury living, sustainability, prestige, and exceptional long-term investment growth.
-</p>
-
-<div class="hero-stats">
-<div class="stat-box glass">
-<h3 class="gold-text">87%</h3>
-<p>Plots Reserved</p>
-</div>
-
-<div class="stat-box glass">
-<h3 class="gold-text">300%</h3>
-<p>ROI Potential</p>
-</div>
-</div>
-
-<div class="hero-actions">
-<a href="https://wa.me/2348030702010?text=Hi%20Adagache%20Homes,%20I%20want%20to%20reserve%20a%20plot%20at%20Solar%20City%20Apo" target="_blank" class="primary-btn">
-<i class="fab fa-whatsapp"></i>
-Reserve Via WhatsApp
-</a>
-
-<a href="#location" class="secondary-btn">
-<i class="fas fa-location-dot"></i>
-View Location
-</a>
-</div>
-</div>
-
-<div class="offer-card glass">
-<div class="offer-top">
-<div>
-<p>PRE-LAUNCH OFFER</p>
-<h3 class="gold-text">ENDS JUNE 11</h3>
-</div>
-
-<div class="offer-icon">
-✨
-</div>
-</div>
-
-<div class="offer-list">
-<div class="offer-item">
-<span>170 SQM</span>
-<span>₦4.5M</span>
-</div>
-
-<div class="offer-item">
-<span>250 SQM</span>
-<span>₦6.7M</span>
-</div>
-
-<div class="offer-item">
-<span>600 SQM</span>
-<span>₦15.9M</span>
-</div>
-</div>
-
-<br>
-
-<a href="https://wa.me/2348030702010" target="_blank" class="plot-btn">
-Book Site Inspection
-</a>
-</div>
-</div>
+  <div class="hero-content">
+    <div>
+      <div class="badge">
+        <i class="fas fa-certificate"></i>
+        FCDA CERTIFICATE OF OCCUPANCY
+      </div>
+      <h2>
+        <span class="gold-text">SMART</span><br>
+        LUXURY<br>
+        LIVING
+      </h2>
+      <p>
+        Invest in Abuja's next premium smart city destination. Solar City Apo combines luxury living, sustainability, prestige, and exceptional long-term investment growth.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-box glass">
+          <h3 class="gold-text">87%</h3>
+          <p>Plots Reserved</p>
+        </div>
+        <div class="stat-box glass">
+          <h3 class="gold-text">300%</h3>
+          <p>ROI Potential</p>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="https://wa.me/2348030702010?text=Hi%20Adagache%20Homes,%20I%20want%20to%20reserve%20a%20plot%20at%20Solar%20City%20Apo" target="_blank" class="primary-btn">
+          <i class="fab fa-whatsapp"></i> Reserve Via WhatsApp
+        </a>
+        <a href="#location" class="secondary-btn">
+          <i class="fas fa-location-dot"></i> View Location
+        </a>
+      </div>
+    </div>
+    <div class="offer-card glass">
+      <div class="offer-top">
+        <div>
+          <p>PRE-LAUNCH OFFER</p>
+          <h3 class="gold-text">ENDS JUNE 11</h3>
+        </div>
+        <div class="offer-icon">✨</div>
+      </div>
+      <div class="offer-list">
+        <div class="offer-item"><span>170 SQM</span><span>₦4.5M</span></div>
+        <div class="offer-item"><span>250 SQM</span><span>₦6.7M</span></div>
+        <div class="offer-item"><span>600 SQM</span><span>₦15.9M</span></div>
+      </div>
+      <br>
+      <a href="https://wa.me/2348030702010" target="_blank" class="plot-btn">Book Site Inspection</a>
+    </div>
+  </div>
 </section>
 
+<!-- PLOTS SECTION -->
 <section class="section" id="plots">
-<div class="container">
-<div class="section-head">
-<small>Available Plots</small>
-<h2>Luxury Investment Options</h2>
-<p>
-Carefully planned layouts designed for smart homes, premium living, and exceptional investment appreciation.
-</p>
-</div>
-
-<div class="plot-grid">
-
-<div class="plot-card">
-<div class="plot-badge">Best Seller</div>
-<div class="plot-icon">🏡</div>
-<h3 class="gold-text">170 SQM</h3>
-<h4>3 Bedroom Terrace</h4>
-<a href="#" class="prototype-link" onclick="viewPrototype(event, '170 SQM 3 Bedroom Terrace')"><i class="far fa-file-pdf"></i> View Prototype Layout</a>
-<div class="price">₦4.5M</div>
-<button onclick="openLeadModal('170 SQM 3 Bedroom Terrace', '₦4.5M')" class="plot-btn">Secure Plot</button>
-</div>
-
-<div class="plot-card">
-<div class="plot-badge">Fast Selling</div>
-<div class="plot-icon">🏘️</div>
-<h3 class="gold-text">250 SQM</h3>
-<h4>4 Bedroom Semi-Detached</h4>
-<a href="#" class="prototype-link" onclick="viewPrototype(event, '250 SQM 4 Bedroom Semi-Detached')"><i class="far fa-file-pdf"></i> View Prototype Layout</a>
-<div class="price">₦6.7M</div>
-<button onclick="openLeadModal('250 SQM 4 Bedroom Semi-Detached', '₦6.7M')" class="plot-btn">Secure Plot</button>
-</div>
-
-<div class="plot-card">
-<div class="plot-badge">Premium</div>
-<div class="plot-icon">🏠</div>
-<h3 class="gold-text">350 SQM</h3>
-<h4>4 Bedroom Fully Detached</h4>
-<a href="#" class="prototype-link" onclick="viewPrototype(event, '350 SQM 4 Bedroom Fully Detached')"><i class="far fa-file-pdf"></i> View Prototype Layout</a>
-<div class="price">₦9.5M</div>
-<button onclick="openLeadModal('350 SQM 4 Bedroom Fully Detached', '₦9.5M')" class="plot-btn">Secure Plot</button>
-</div>
-
-<div class="plot-card">
-<div class="plot-badge">Luxury</div>
-<div class="plot-icon">🏛️</div>
-<h3 class="gold-text">450 SQM</h3>
-<h4>5 Bedroom Detached</h4>
-<a href="#" class="prototype-link" onclick="viewPrototype(event, '450 SQM 5 Bedroom Detached')"><i class="far fa-file-pdf"></i> View Prototype Layout</a>
-<div class="price">₦12M</div>
-<button onclick="openLeadModal('450 SQM 5 Bedroom Detached', '₦12M')" class="plot-btn">Secure Plot</button>
-</div>
-
-<div class="plot-card">
-<div class="plot-badge">Elite</div>
-<div class="plot-icon">🏰</div>
-<h3 class="gold-text">600 SQM</h3>
-<h4>6 Bedroom Mansion</h4>
-<a href="#" class="prototype-link" onclick="viewPrototype(event, '600 SQM 6 Bedroom Mansion')"><i class="far fa-file-pdf"></i> View Prototype Layout</a>
-<div class="price">₦15.9M</div>
-<button onclick="openLeadModal('600 SQM 6 Bedroom Mansion', '₦15.9M')" class="plot-btn">Secure Plot</button>
-</div>
-
-<div class="plot-card">
-<div class="plot-badge">Investor Choice</div>
-<div class="plot-icon">🏢</div>
-<h3 class="gold-text">1000 SQM</h3>
-<h4>Block of Flats</h4>
-<a href="#" class="prototype-link" onclick="viewPrototype(event, '1000 SQM Block of Flats')"><i class="far fa-file-pdf"></i> View Prototype Layout</a>
-<div class="price">₦27M</div>
-<button onclick="openLeadModal('1000 SQM Block of Flats', '₦27M')" class="plot-btn">Secure Plot</button>
-</div>
-
-</div>
-</div>
-</section>
-
-<section class="section" id="calculator" style="background: #0d0d0d; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-<div class="container">
+  <div class="container">
     <div class="section-head">
-        <small>Flexible Financing</small>
-        <h2>Installment Calculator</h2>
-        <p>Plan your investment with ease. Choose a plot size and adjust the parameters to view your customized payment plan.</p>
+      <small>Available Plots</small>
+      <h2>Luxury Investment Options</h2>
+      <p>Carefully planned layouts designed for smart homes, premium living, and exceptional investment appreciation.</p>
     </div>
+    <div class="plot-grid" id="plotsGrid"></div>
+  </div>
+</section>
 
+<!-- CALCULATOR SECTION -->
+<section class="section" id="calculator" style="background: #0d0d0d; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="container">
+    <div class="section-head">
+      <small>Flexible Financing</small>
+      <h2>Installment Calculator</h2>
+      <p>Plan your investment with ease. Choose a plot size and adjust the parameters to view your customized payment plan.</p>
+    </div>
     <div class="calc-container glass">
-        <div class="calc-inputs">
-            <div class="input-group">
-                <label for="plotSelect">Select Plot Option</label>
-                <select id="plotSelect" onchange="calculateInstallments()">
-                    <option value="4500000" data-name="170 SQM (3 Bed Terrace)">170 SQM - ₦4.5M</option>
-                    <option value="6700000" data-name="250 SQM (4 Bed Semi-Detached)">250 SQM - ₦6.7M</option>
-                    <option value="9500000" data-name="350 SQM (4 Bed Fully Detached)" selected>350 SQM - ₦9.5M</option>
-                    <option value="12000000" data-name="450 SQM (5 Bed Detached)">450 SQM - ₦12.0M</option>
-                    <option value="15900000" data-name="600 SQM (6 Bed Mansion)">600 SQM - ₦15.9M</option>
-                    <option value="27000000" data-name="1000 SQM (Block of Flats)">1000 SQM - ₦27.0M</option>
-                </select>
-            </div>
-
-            <div class="input-group">
-                <label>Minimum Down Payment: <span id="depositPercentText">30%</span></label>
-                <input type="range" id="depositRange" min="30" max="80" step="10" value="30" oninput="calculateInstallments()">
-                <div class="range-labels">
-                    <span>30%</span>
-                    <span>50%</span>
-                    <span>80%</span>
-                </div>
-            </div>
-
-            <div class="input-group">
-                <label for="durationSelect">Payment Term</label>
-                <select id="durationSelect" onchange="calculateInstallments()">
-                    <option value="3">3 Months</option>
-                    <option value="6" selected>6 Months</option>
-                    <option value="12">12 Months</option>
-                </select>
-            </div>
+      <div class="calc-inputs">
+        <div class="input-group">
+          <label for="plotSelect">Select Plot Option</label>
+          <select id="plotSelect"></select>
         </div>
-
-        <div class="calc-results">
-            <div class="result-row">
-                <span>Total Plot Value:</span>
-                <span id="resTotal" class="gold-text">₦0.00</span>
-            </div>
-            <div class="result-row">
-                <span>Required Down Payment:</span>
-                <span id="resDeposit">₦0.00</span>
-            </div>
-            <div class="result-row">
-                <span>Balance Remaining:</span>
-                <span id="resBalance">₦0.00</span>
-            </div>
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-            <div class="result-row execution">
-                <div>
-                    <strong>Monthly Payment:</strong>
-                    <p style="font-size: 0.8rem; color: var(--muted); margin: 0;">For chosen duration</p>
-                </div>
-                <span id="resMonthly" class="gold-text" style="font-size: 2rem; font-weight: 900;">₦0.00</span>
-            </div>
-
-            <a href="#" id="calcWhatsAppBtn" target="_blank" class="primary-btn" style="width: 100%; justify-content: center; margin-top: 20px; border-radius: 14px;">
-                <i class="fab fa-whatsapp"></i> Propose This Payment Plan
-            </a>
+        <div class="input-group">
+          <label>Minimum Down Payment: <span id="depositPercentText">30%</span></label>
+          <input type="range" id="depositRange" min="30" max="80" step="10" value="30">
+          <div class="range-labels">
+            <span>30%</span>
+            <span>50%</span>
+            <span>80%</span>
+          </div>
         </div>
+        <div class="input-group">
+          <label for="durationSelect">Payment Term</label>
+          <select id="durationSelect">
+            <option value="3">3 Months</option>
+            <option value="6" selected>6 Months</option>
+            <option value="12">12 Months</option>
+          </select>
+        </div>
+      </div>
+      <div class="calc-results">
+        <div class="result-row">
+          <span>Total Plot Value:</span>
+          <span id="resTotal" class="gold-text">₦0.00</span>
+        </div>
+        <div class="result-row">
+          <span>Required Down Payment:</span>
+          <span id="resDeposit">₦0.00</span>
+        </div>
+        <div class="result-row">
+          <span>Balance Remaining:</span>
+          <span id="resBalance">₦0.00</span>
+        </div>
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+        <div class="result-row execution">
+          <div>
+            <strong>Monthly Payment:</strong>
+            <p style="font-size: 0.8rem; color: var(--muted); margin: 0;">For chosen duration</p>
+          </div>
+          <span id="resMonthly" class="gold-text" style="font-size: 2rem; font-weight: 900;">₦0.00</span>
+        </div>
+        <a href="#" id="calcWhatsAppBtn" target="_blank" class="primary-btn" style="width: 100%; justify-content: center; margin-top: 20px; border-radius: 14px;">
+          <i class="fab fa-whatsapp"></i> Propose This Payment Plan
+        </a>
+      </div>
     </div>
-</div>
+  </div>
 </section>
 
+<!-- FEATURES SECTION -->
 <section class="section" id="features" style="background:#090909;">
-<div class="container">
-<div class="section-head">
-<small>Estate Features</small>
-<h2>Built For The Future</h2>
-<p>
-Designed for modern luxury, sustainability, security, and premium smart-city living.
-</p>
-</div>
-
-<div class="features-grid">
-
-<div class="feature-card glass">
-<div class="feature-icon">☀️</div>
-<h3>Solar Power</h3>
-</div>
-
-<div class="feature-card glass">
-<div class="feature-icon">🔋</div>
-<h3>EV Charging</h3>
-</div>
-
-<div class="feature-card glass">
-<div class="feature-icon">🏊</div>
-<h3>Swimming Pool</h3>
-</div>
-
-<div class="feature-card glass">
-<div class="feature-icon">🛡️</div>
-<h3>24/7 Security</h3>
-</div>
-
-<div class="feature-card glass">
-<div class="feature-icon">📹</div>
-<h3>CCTV Systems</h3>
-</div>
-
-<div class="feature-card glass">
-<div class="feature-icon">🛣️</div>
-<h3>Road Network</h3>
-</div>
-
-<div class="feature-card glass">
-<div class="feature-icon">🛍️</div>
-<h3>Shopping Mall</h3>
-</div>
-
-<div class="feature-card glass">
-<div class="feature-icon">🌳</div>
-<h3>Green Areas</h3>
-</div>
-
-</div>
-</div>
+  <div class="container">
+    <div class="section-head">
+      <small>Estate Features</small>
+      <h2>Built For The Future</h2>
+      <p>Designed for modern luxury, sustainability, security, and premium smart-city living.</p>
+    </div>
+    <div class="features-grid" id="featuresGrid"></div>
+  </div>
 </section>
 
+<!-- LOCATION SECTION -->
 <section class="section" id="location">
-<div class="container">
-<div class="location-grid">
-
-<div class="location-text">
-<div class="section-head" style="text-align:left; margin-bottom:40px;">
-<small>Prime Location</small>
-<h2>
-Located In Apo,
-<span class="gold-text">Burum West District</span>
-</h2>
-</div>
-
-<p>
-Strategically positioned within Abuja’s rapidly developing luxury corridor with direct accessibility to major commercial and residential districts.
-</p>
-
-<div class="location-stats">
-<div class="location-box glass">
-<h3 class="gold-text">12min</h3>
-<p>To Central Area</p>
-</div>
-
-<div class="location-box glass">
-<h3 class="gold-text">High</h3>
-<p>Investment Growth</p>
-</div>
-</div>
-</div>
-
-<div class="map-box">
-<iframe src="https://maps.google.com/maps?q=Apo%20Resettlement%20Abuja&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-<a href="https://maps.google.com/maps?q=Apo%20Resettlement%20Abuja" target="_blank" class="direction-btn">
-<i class="fas fa-location-dot"></i>
-Get Directions To Solar City Apo
-</a>
-</div>
-
-</div>
-</div>
+  <div class="container">
+    <div class="location-grid">
+      <div class="location-text">
+        <div class="section-head" style="text-align:left; margin-bottom:40px;">
+          <small>Prime Location</small>
+          <h2>Located In Apo, <span class="gold-text">Burum West District</span></h2>
+        </div>
+        <p>Strategically positioned within Abuja's rapidly developing luxury corridor with direct accessibility to major commercial and residential districts.</p>
+        <div class="location-stats">
+          <div class="location-box glass">
+            <h3 class="gold-text">12min</h3>
+            <p>To Central Area</p>
+          </div>
+          <div class="location-box glass">
+            <h3 class="gold-text">High</h3>
+            <p>Investment Growth</p>
+          </div>
+        </div>
+      </div>
+      <div class="map-box">
+        <iframe src="https://maps.google.com/maps?q=Apo%20Resettlement%20Abuja&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a href="https://maps.google.com/maps?q=Apo%20Resettlement%20Abuja" target="_blank" class="direction-btn">
+          <i class="fas fa-location-dot"></i> Get Directions To Solar City Apo
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ABOUT CEO SECTION (images/about.png) -->
+<section class="section" id="about-ceo" style="background: linear-gradient(145deg, #030303 0%, #0a0a0a 100%);">
+  <div class="container">
+    <div class="ceo-wrapper">
+      <div class="ceo-tag">
+        <i class="fas fa-crown"></i> MEET THE VISIONARY <i class="fas fa-star-of-life"></i>
+      </div>
+      <div class="ceo-grid">
+        <div class="ceo-image-card">
+          <img src="images/about.png" alt="CEO John Abbah Adagache" id="ceoImage" onerror="this.src='https://placehold.co/800x1000/1a1a1a/d4af37?text=CEO+Photo+Jblingz'">
+          <div class="image-accent"></div>
+          <div class="img-caption"><i class="fas fa-camera"></i> John Abbah Adagache (Jblingz Adagache) | Entrepreneur & Visionary</div>
+        </div>
+        <div class="ceo-content">
+          <h1 class="ceo-name gold-text">John Abbah Adagache</h1>
+          <div class="ceo-title">Jblingz Adagache · Entrepreneur | Investor | Creative Executive | Philanthropist</div>
+          <div class="ceo-bio" id="ceoBioText"></div>
+          <div class="pillars" id="pillarsList"></div>
+          <div class="brand-badges">
+            <span class="brand-badge"><i class="fas fa-envelope"></i> Adagachehomes@gmail.com</span>
+            <span class="brand-badge"><i class="fas fa-map-marker-alt"></i> Flat F, Block 8 Eman Estate, Katampe main, Abuja</span>
+          </div>
+          <div class="social-quote">
+            <div class="ceo-social-links">
+              <a href="https://instagram.com/adagachehomes" target="_blank"><i class="fab fa-instagram"></i></a>
+              <a href="https://facebook.com/adagachehomes" target="_blank"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://tiktok.com/@adagachehomes" target="_blank"><i class="fab fa-tiktok"></i></a>
+              <a href="https://wa.me/2348030702010" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="quote-mini"><i class="fas fa-quote-left" style="color: var(--gold);"></i> Legacy, excellence & global impact</div>
+          </div>
+          <div class="ceo-action">
+            <a href="https://wa.me/2348030702010?text=Hello%20Mr.%20John%20Adagache,%20I%20read%20your%20profile%20and%20would%20like%20to%20connect" target="_blank" class="connect-btn"><i class="fab fa-whatsapp"></i> Connect with CEO</a>
+          </div>
+          <div style="margin-top: 5px; font-size: 0.75rem; color: var(--muted);">Instagram: @adagachehomes | Facebook: @adagachehomes | TikTok: @adagachehomes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
 <section class="section">
-<div class="container">
-<div class="cta-section glass">
-<div class="section-head" style="margin-bottom:0;">
-<small>Limited Opportunity</small>
-<h2>
-Own A Piece Of
-<span class="gold-text">Abuja’s Future</span>
-</h2>
-
-<p>
-Solar City Apo combines luxury, sustainability, prestige, and investment growth into one extraordinary smart estate experience.
-</p>
-</div>
-
-<div class="cta-actions">
-<a href="https://wa.me/2348030702010?text=Hi%20Adagache%20Homes,%20I%20want%20to%20book%20an%20inspection" target="_blank" class="primary-btn">
-<i class="fab fa-whatsapp"></i>
-Book Inspection
-</a>
-
-<a href="tel:08030702010" class="secondary-btn">
-<i class="fas fa-phone"></i>
-Call 08030702010
-</a>
-</div>
-</div>
-</div>
+  <div class="container">
+    <div class="cta-section glass">
+      <div class="section-head" style="margin-bottom:0;">
+        <small>Limited Opportunity</small>
+        <h2>Own A Piece Of <span class="gold-text">Abuja's Future</span></h2>
+        <p>Solar City Apo combines luxury, sustainability, prestige, and investment growth into one extraordinary smart estate experience.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="https://wa.me/2348030702010?text=Hi%20Adagache%20Homes,%20I%20want%20to%20book%20an%20inspection" target="_blank" class="primary-btn"><i class="fab fa-whatsapp"></i> Book Inspection</a>
+        <a href="tel:08030702010" class="secondary-btn"><i class="fas fa-phone"></i> Call 08030702010</a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <footer id="contact">
-<div class="footer-container">
-<div class="footer-brand">
-<h2 class="gold-text">SOLAR CITY APO</h2>
-<p>LUXURY • SMART LIVING • HIGH RETURNS</p>
-</div>
-
-<div class="footer-contact">
-<a href="https://instagram.com/adagachehomes" class="instagram" target="_blank">
-<i class="fab fa-instagram"></i>
-@adagachehomes
-</a>
-
-<a href="tel:08030702010" class="phone">
-08030702010
-</a>
-</div>
-</div>
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h2 class="gold-text">SOLAR CITY APO</h2>
+      <p>LUXURY • SMART LIVING • HIGH RETURNS</p>
+    </div>
+    <div class="footer-contact">
+      <a href="https://instagram.com/adagachehomes" class="instagram" target="_blank"><i class="fab fa-instagram"></i> @adagachehomes</a>
+      <a href="tel:08030702010" class="phone">08030702010</a>
+    </div>
+  </div>
 </footer>
 
-<script>
-function toggleMenu(){
-document.getElementById('navLinks').classList.toggle('active');
-}
-
-// Active State Modal Memory Variable Block
-let currentSelectedPlot = '';
-let currentSelectedPrice = '';
-
-function openLeadModal(plotName, plotPrice) {
-currentSelectedPlot = plotName;
-currentSelectedPrice = plotPrice;
-document.getElementById('modalPlotTitle').innerText = plotName;
-document.getElementById('leadModal').classList.add('active');
-}
-
-function closeLeadModal(event, forceClose = false) {
-if (forceClose || event.target.classList.contains('modal-overlay')) {
-document.getElementById('leadModal').classList.remove('active');
-}
-}
-
-function triggerWhatsAppLead(paymentMethod) {
-const basePhone = "2348030702010";
-const message = `Hi Adagache Homes, I am highly interested in securing the *${currentSelectedPlot}* priced at *${currentSelectedPrice}*.\n\nI would prefer to proceed via an *${paymentMethod}* structure. Please provide me with the available plot documentation parameters.`;
-window.open(`https://wa.me/${basePhone}?text=${encodeURIComponent(message)}`, '_blank');
-document.getElementById('leadModal').classList.remove('active');
-}
-
-function viewPrototype(event, plotName) {
-event.preventDefault();
-alert(`Redirecting to layout blueprint design overview for: ${plotName}. (In live configuration, swap out this hook with your direct cloud-stored PDF asset track link)`);
-}
-
-function formatNaira(num) {
-return '₦' + parseFloat(num).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,').slice(0, -3);
-}
-
-function calculateInstallments() {
-const totalPrice = parseFloat(document.getElementById('plotSelect').value);
-const selectedOption = document.getElementById('plotSelect').options[document.getElementById('plotSelect').selectedIndex];
-const plotName = selectedOption.getAttribute('data-name');
-
-const depositPercent = parseInt(document.getElementById('depositRange').value);
-const duration = parseInt(document.getElementById('durationSelect').value);
-
-document.getElementById('depositPercentText').innerText = depositPercent + '%';
-
-const depositAmount = totalPrice * (depositPercent / 100);
-const remainingBalance = totalPrice - depositAmount;
-const monthlyPayment = remainingBalance / duration;
-
-document.getElementById('resTotal').innerText = formatNaira(totalPrice);
-document.getElementById('resDeposit').innerText = formatNaira(depositAmount);
-document.getElementById('resBalance').innerText = formatNaira(remainingBalance);
-document.getElementById('resMonthly').innerText = formatNaira(monthlyPayment);
-
-const basePhone = "2348030702010";
-const message = `Hi Adagache Homes, I used your web calculator and would like to propose an installment plan for the *${plotName}*:\n\n` +
-`- *Total Plot Price:* ${formatNaira(totalPrice)}\n` +
-`- *My Down Payment (${depositPercent}%):* ${formatNaira(depositAmount)}\n` +
-`- *Chosen Term:* ${duration} Months\n` +
-`- *Calculated Monthly Outlay:* ${formatNaira(monthlyPayment)}\n\n` +
-`Please let me know how we can proceed with documentation!`;
-
-document.getElementById('calcWhatsAppBtn').href = `https://wa.me/${basePhone}?text=${encodeURIComponent(message)}`;
-}
-
-window.addEventListener('DOMContentLoaded', calculateInstallments);
-</script>
-
+<!-- External JavaScript -->
+<script src="script.js"></script>
 </body>
 </html>
