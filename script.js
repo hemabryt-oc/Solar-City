@@ -1,6 +1,6 @@
 /* ==============================================
    COMPLETE JAVASCRIPT - Solar City Apo
-   All functions included: Plots, Calculator, CEO Bio, Modal, Mobile Menu
+   Added: Read More / Read Less functionality for CEO bio
    ============================================== */
 
 // ========== DATA ==========
@@ -13,14 +13,20 @@ const plotsData = [
   { size: "1000 SQM", price: 27000000, name: "Block of Flats", badge: "Investor Choice", prototype: "1000 SQM Block of Flats" }
 ];
 
-// CEO Bio Content - Full detailed writeup
-const ceoBioHTML = `
+// CEO Bio Content - Full detailed writeup (6 paragraphs)
+const ceoBioFullHTML = `
 <p><strong>John Abbah Adagache</strong>, popularly known as <strong>Jblingz Adagache</strong>, is a dynamic Nigerian entrepreneur, creative leader, and visionary founder with diversified interests across multiple high-impact industries. He is the <strong>Chief Executive Officer of Adagache Integrated Global Services</strong>, a multi-sector company operating in real estate, oil and gas, travel and tours, and automobile services.</p>
 <p>Based in Abuja, Nigeria, John has positioned his brand at the intersection of value creation, trust, and long-term investment growth. Through his real estate ventures (including <strong>Adagache Homes</strong> and landmark projects like Solar City Apo), he is deeply committed to helping individuals and organizations secure premium spaces to live, work, and invest, with a strong emphasis on due diligence, proper documentation, and sustainable asset acquisition.</p>
 <p>John is of <strong>Idoma descent</strong> from Benue State, and his work reflects a strong sense of purpose, integrity, and community upliftment. Beyond business, he is actively involved in philanthropy, supporting initiatives that empower individuals with opportunities for livelihood, stability, and personal growth.</p>
 <p>In addition to his corporate pursuits, John is a music performing artist. In 2022, he released his debut project, <strong>"The King Jesus EP"</strong>, marking his entry into the music industry as a faith-driven and purpose-centered creative. His artistry reflects themes of identity, spirituality, resilience, and excellence.</p>
 <p>Expanding his influence into lifestyle and culture, John is also the CEO of <strong>JESUS ABOVE EVERYTHING (JAE Unlimited)</strong>, a fashion brand built on bold expression, faith-inspired values, and contemporary design. He further leads <strong>Trillionaires Empire</strong>, an entertainment company focused on talent development, creative production, and brand expansion within the global entertainment space.</p>
 <p><strong>Driven by a clear global vision</strong>, John Abbah Adagache is steadily working to position his brands on the international stage, blending entrepreneurship, creativity, and social impact. His mission is rooted in building legacy-driven enterprises that create value, inspire confidence, and uplift communities—locally and globally.</p>
+`;
+
+// Short version for initial display (first 2 paragraphs only)
+const ceoBioShortHTML = `
+<p><strong>John Abbah Adagache</strong>, popularly known as <strong>Jblingz Adagache</strong>, is a dynamic Nigerian entrepreneur, creative leader, and visionary founder with diversified interests across multiple high-impact industries. He is the <strong>Chief Executive Officer of Adagache Integrated Global Services</strong>, a multi-sector company operating in real estate, oil and gas, travel and tours, and automobile services.</p>
+<p>Based in Abuja, Nigeria, John has positioned his brand at the intersection of value creation, trust, and long-term investment growth. Through his real estate ventures (including <strong>Adagache Homes</strong> and landmark projects like Solar City Apo), he is deeply committed to helping individuals and organizations secure premium spaces to live, work, and invest, with a strong emphasis on due diligence, proper documentation, and sustainable asset acquisition.</p>
 `;
 
 const pillarsArray = [
@@ -92,16 +98,89 @@ function renderFeatures() {
   }).join('');
 }
 
-// ========== RENDER CEO CONTENT ==========
+// ========== RENDER CEO CONTENT WITH READ MORE ==========
+let isBioExpanded = false;
+
 function renderCEOContent() {
   const bioDiv = document.getElementById('ceoBioText');
   const pillarsDiv = document.getElementById('pillarsList');
   
   if (bioDiv) {
-    bioDiv.innerHTML = ceoBioHTML;
+    // Start with short version
+    bioDiv.innerHTML = ceoBioShortHTML;
+    
+    // Add Read More button
+    const readMoreContainer = document.createElement('div');
+    readMoreContainer.className = 'read-more-container';
+    readMoreContainer.style.marginTop = '15px';
+    
+    const readMoreBtn = document.createElement('button');
+    readMoreBtn.className = 'read-more-btn';
+    readMoreBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Read More <i class="fas fa-chevron-down"></i>';
+    readMoreBtn.style.background = 'rgba(212, 175, 55, 0.15)';
+    readMoreBtn.style.border = '1px solid rgba(212, 175, 55, 0.3)';
+    readMoreBtn.style.color = 'var(--gold-light)';
+    readMoreBtn.style.padding = '10px 24px';
+    readMoreBtn.style.borderRadius = '40px';
+    readMoreBtn.style.cursor = 'pointer';
+    readMoreBtn.style.fontWeight = '600';
+    readMoreBtn.style.fontSize = '0.85rem';
+    readMoreBtn.style.transition = 'all 0.3s';
+    readMoreBtn.style.display = 'inline-flex';
+    readMoreBtn.style.alignItems = 'center';
+    readMoreBtn.style.gap = '8px';
+    
+    // Store full content in a data attribute
+    const hiddenContentDiv = document.createElement('div');
+    hiddenContentDiv.className = 'hidden-bio-content';
+    hiddenContentDiv.style.display = 'none';
+    hiddenContentDiv.innerHTML = ceoBioFullHTML;
+    bioDiv.appendChild(hiddenContentDiv);
+    
+    readMoreBtn.addEventListener('mouseenter', () => {
+      readMoreBtn.style.background = 'rgba(212, 175, 55, 0.25)';
+      readMoreBtn.style.transform = 'translateY(-2px)';
+    });
+    readMoreBtn.addEventListener('mouseleave', () => {
+      readMoreBtn.style.background = 'rgba(212, 175, 55, 0.15)';
+      readMoreBtn.style.transform = 'translateY(0)';
+    });
+    
+    readMoreBtn.addEventListener('click', () => {
+      if (!isBioExpanded) {
+        // Expand: show full content
+        bioDiv.innerHTML = ceoBioFullHTML;
+        // Re-append pillars and other elements that might be affected
+        if (pillarsDiv) {
+          pillarsDiv.innerHTML = pillarsArray.map(p => `
+            <span class="pillar-item">
+              <i class="${p.icon}"></i> ${p.label}
+            </span>
+          `).join('');
+        }
+        readMoreBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Read Less <i class="fas fa-chevron-up"></i>';
+        isBioExpanded = true;
+      } else {
+        // Collapse: show short version
+        bioDiv.innerHTML = ceoBioShortHTML;
+        // Re-append pillars
+        if (pillarsDiv) {
+          pillarsDiv.innerHTML = pillarsArray.map(p => `
+            <span class="pillar-item">
+              <i class="${p.icon}"></i> ${p.label}
+            </span>
+          `).join('');
+        }
+        readMoreBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Read More <i class="fas fa-chevron-down"></i>';
+        isBioExpanded = false;
+      }
+    });
+    
+    bioDiv.appendChild(readMoreContainer);
+    readMoreContainer.appendChild(readMoreBtn);
   }
   
-  if (pillarsDiv) {
+  if (pillarsDiv && !pillarsDiv.innerHTML) {
     pillarsDiv.innerHTML = pillarsArray.map(p => `
       <span class="pillar-item">
         <i class="${p.icon}"></i> ${p.label}
