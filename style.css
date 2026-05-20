@@ -1,5 +1,6 @@
 /* ==============================================
    COMPLETE CSS STYLESHEET - Solar City Apo
+   Includes: Calculator fix, Read More button, responsive design
    ============================================== */
 
 :root {
@@ -344,46 +345,101 @@ header {
   margin-bottom: 15px;
 }
 
-/* ========== CALCULATOR ========== */
+/* ========== CALCULATOR - FIXED & BALANCED ========== */
 .calc-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  padding: 40px;
+  gap: 50px;
+  padding: 50px;
   border-radius: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
+
+.calc-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.calc-results {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 35px;
+  border-radius: 24px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 12px;
 }
+
 .input-group label {
   font-weight: 700;
   color: var(--gold-light);
+  font-size: 0.95rem;
 }
-.input-group select, .input-group input {
+
+.input-group select, 
+.input-group input {
   background: #151515;
   color: white;
   border: 1px solid var(--border);
-  padding: 15px;
-  border-radius: 12px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  font-size: 1rem;
   cursor: pointer;
+  transition: all 0.3s;
 }
+
+.input-group select:hover,
+.input-group input:hover {
+  border-color: var(--gold);
+}
+
 .range-labels {
   display: flex;
   justify-content: space-between;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  padding: 0 5px;
 }
-.calc-results {
-  background: rgba(0, 0, 0, 0.4);
-  padding: 30px;
-  border-radius: 22px;
-}
+
 .result-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.result-row span:first-child {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.result-row span:last-child {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.result-row.execution {
+  border-bottom: none;
+  margin-top: 5px;
+}
+
+.result-row.execution span:last-child {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.result-row.execution div strong {
+  font-size: 1rem;
 }
 
 /* ========== FEATURES ========== */
@@ -397,6 +453,10 @@ header {
   text-align: center;
   border-radius: 28px;
   background: var(--glass);
+  transition: transform 0.3s;
+}
+.feature-card:hover {
+  transform: translateY(-8px);
 }
 .feature-icon {
   font-size: 3rem;
@@ -433,6 +493,10 @@ header {
   text-decoration: none;
   text-align: center;
   font-weight: 900;
+  transition: 0.3s;
+}
+.direction-btn:hover {
+  transform: translateY(-3px);
 }
 .location-box {
   padding: 25px;
@@ -440,10 +504,49 @@ header {
   display: inline-block;
   margin-right: 15px;
   margin-top: 20px;
+  min-width: 160px;
 }
 .location-box h3 {
   font-size: 2rem;
   font-weight: 900;
+}
+
+/* ========== READ MORE BUTTON STYLES ========== */
+.read-more-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.read-more-btn {
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--gold-light);
+  padding: 10px 28px;
+  border-radius: 40px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: inherit;
+}
+
+.read-more-btn:hover {
+  background: rgba(212, 175, 55, 0.25);
+  transform: translateY(-2px);
+  border-color: var(--gold);
+}
+
+.read-more-btn i {
+  font-size: 0.75rem;
+  transition: transform 0.3s;
+}
+
+.read-more-btn:hover i {
+  transform: translateY(2px);
 }
 
 /* ========== CEO SECTION ========== */
@@ -470,6 +573,10 @@ header {
   overflow: hidden;
   background: #111;
   border: 1px solid rgba(212, 175, 55, 0.2);
+  transition: transform 0.3s;
+}
+.ceo-image-card:hover {
+  transform: translateY(-5px);
 }
 .ceo-image-card img {
   width: 100%;
@@ -591,6 +698,7 @@ header {
 }
 .connect-btn:hover {
   transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
 }
 
 /* ========== CTA & FOOTER ========== */
@@ -719,9 +827,24 @@ footer {
 
 /* ========== RESPONSIVE ========== */
 @media (max-width: 992px) {
-  .hero-content, .ceo-grid, .location-grid, .calc-container {
+  .hero-content, .ceo-grid, .location-grid {
     grid-template-columns: 1fr;
   }
+  
+  .calc-container {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 30px;
+  }
+  
+  .calc-results {
+    order: 1;
+  }
+  
+  .calc-inputs {
+    order: 2;
+  }
+  
   .hero h2, .section-head h2 {
     font-size: 3rem;
   }
@@ -729,6 +852,7 @@ footer {
     font-size: 2.5rem;
   }
 }
+
 @media (max-width: 768px) {
   .mobile-btn {
     display: block;
@@ -757,6 +881,15 @@ footer {
   .section {
     padding: 80px 20px;
   }
+  .calc-container {
+    padding: 20px;
+  }
+  .calc-results {
+    padding: 25px;
+  }
+  .result-row.execution span:last-child {
+    font-size: 1.5rem;
+  }
   .stat-box, .location-box {
     min-width: auto;
     width: 100%;
@@ -765,5 +898,14 @@ footer {
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
+  }
+  .brand-badges {
+    flex-direction: column;
+  }
+  .brand-badge {
+    width: fit-content;
+  }
+  .read-more-container {
+    justify-content: center;
   }
 }
